@@ -5,7 +5,8 @@ const KeySellingPoints=()=>{
             <div className="selling-point">
                 <div className="description">
                     <h3>Trusted by Real Users</h3>
-                    <p>Our platform features genuine, verified reviews so you can make decisions confidently based on real experiences and honest opinions.</p>
+                    <p>To create a platform where every opinion matters, helping users share experiences and discover trusted insights before making decisions.
+        </p>
 
                 </div>
                 <div className="image">

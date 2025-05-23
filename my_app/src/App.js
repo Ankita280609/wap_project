@@ -112,6 +112,7 @@ import ProductDetails from './components/ProductDetails';
 import Footer from './components/Footer';
 import KeySellingPoints from './components/KeySellingPoints'; 
 import StatsSection from './components/StatsSection'
+import ReviewPurpose from './components/ReviewPurpose';
 import TestimonialCarousel from './components/TestimonialCarousel'; 
 import './App.css';
 
@@ -154,12 +155,17 @@ function App() {
       ) : (
         <>
           {/* <Carousel products={products}  onProductSelect={handleProductSelect} /> */}
+          <ReviewPurpose/>
+          <TestimonialCarousel />
           <StatsSection/>
+
           <KeySellingPoints />  
           
-          <TestimonialCarousel /> 
+           
+          
         </>
       )}
+      
       <Footer />
     </div>
   );
