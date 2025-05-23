@@ -48,7 +48,7 @@
 // export default App;
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
-import SearchBar from './components/SearchBar';
+// import SearchBar from './components/SearchBar';
 import HeroSection from './components/HeroSection';
 import Carousel from './components/Carousel';
 import ProductDetails from './components/ProductDetails';
@@ -56,7 +56,7 @@ import Footer from './components/Footer';
 import './App.css';
 
 function App() {
-  const [searchQuery, setSearchQuery] = useState('');
+  // const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
   const [reviews, setReviews] = useState({}); 
@@ -82,7 +82,7 @@ function App() {
   return (
     <div className="App">
       <Navbar />
-      <SearchBar setSearchQuery={setSearchQuery} />
+      {/* <SearchBar setSearchQuery={setSearchQuery} /> */}
       <HeroSection />
       {selectedProduct ? (
         <ProductDetails
@@ -92,7 +92,7 @@ function App() {
           goBack={() => setSelectedProduct(null)}
         />
       ) : (
-        <Carousel products={products} searchQuery={searchQuery} onProductSelect={handleProductSelect} />
+        <Carousel products={products}  onProductSelect={handleProductSelect} />
       )}
       <Footer />
     </div>

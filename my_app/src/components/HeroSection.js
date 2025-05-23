@@ -7,7 +7,7 @@ const HeroSection=()=>{
                     <h1>Your Product Review Hub</h1>
                     <p>Discover and share honest review about the latest products.</p>
                 </div>
-                <form className="content-form">
+                <form className="contact-form">
                     <h2 className="contact-heading">Reach out to us</h2>
                     <input type="text" placeholder="Name"/>
                     <input type="email" placeholder="Email"/>
