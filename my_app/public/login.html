@@ -1,0 +1,46 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css">
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <input type="text" placeholder="Username" required>
+      <input type="password" placeholder="Password" required>
+      <button>Login</button>
+    </div>
+  </div>
+</body>
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Login</title>
+  <link rel="stylesheet" href="login.css" />
+</head>
+<body>
+  <div class="login-container">
+    <div class="login-form">
+      <h2>Login</h2>
+      <form onsubmit="return redirectToMain()">
+        <input type="text" placeholder="Username" required />
+        <input type="password" placeholder="Password" required />
+        <button type="submit">Login</button>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    function redirectToMain() {
+      // Optional: Add validation here
+      window.location.href = "main.js"; // Redirect to main page
+      return false; // Prevent default form submission not done whole write
+    }
+  </script>
+</body>
+</html>

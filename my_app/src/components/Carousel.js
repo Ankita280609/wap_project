@@ -5,7 +5,8 @@ const Carousel = ({products, searchQuery, onProductSelect})=>{
     )
     return (
         <section className="carousel-featured-products">
-            <h2>Featured Product</h2>
+            <h2 style={{ color: "black" }}>Featured Product</h2>
+
             <div className="carousel">
                 {filteredProducts.map(product=>(
                     <div key={product.id} className="carousel-item">
@@ -21,4 +22,5 @@ const Carousel = ({products, searchQuery, onProductSelect})=>{
         </section>
     )
 }
+
 export default Carousel
