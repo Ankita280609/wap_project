@@ -13,6 +13,12 @@ const TEAM = [
     bio: "Expert in scalable web and mobile solutions."
   },
   {
+    name: "Komal Singh",
+    role: "Head of Security",
+    photo: "https://randomuser.me/api/portraits/women/46.jpg",
+    bio: "Building trust through world-class customer care."
+  },
+  {
     name: "Meera Chawla",
     role: "Product Manager",
     photo: "https://randomuser.me/api/portraits/women/55.jpg",
@@ -24,6 +30,7 @@ const TEAM = [
     photo: "https://randomuser.me/api/portraits/men/57.jpg",
     bio: "Building trust through world-class customer care."
   }
+
 ];
 const TeamCarousel = () => (
   <section className="team-carousel">

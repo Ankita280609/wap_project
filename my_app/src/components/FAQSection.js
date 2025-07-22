@@ -16,9 +16,22 @@ const FAQS = [
   {
     question: "How can I contact customer support?",
     answer: "You can reach us anytime at support@revuva.com or via the Contact page on our site."
+  },
+  {
+    question: "Do you offer international shipping?",
+    answer: "Yes, we ship to over 100 countries worldwide. Shipping fees and delivery times vary by destination—see our Shipping Info page for details."
+  },
+  {
+    question: "Can I modify or cancel my order after placing it?",
+    answer: "You can modify or cancel orders within 2 hours of checkout. Please visit Your Orders in your account or contact support@revuva.com for assistance."
+  },
+  {
+    question: "What payment methods do you accept?",
+    answer: "We accept all major credit/debit cards (Visa, MasterCard, AMEX), PayPal, and Apple Pay. For offline payments, please reach out to billing@revuva.com."
   }
+  
+  
 ];
-
 const FAQSection = () => {
   const [openIdx, setOpenIdx] = useState(null);
   const handleToggle = idx => setOpenIdx(openIdx === idx ? null : idx);

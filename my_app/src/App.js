@@ -286,54 +286,75 @@
 
 // export default App;??
 
+// src/App.js
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
 import StatsSection from './components/StatsSection';
-import ReviewPurpose from './components/ReviewPurpose';
 import TestimonialCarousel from './components/TestimonialCarousel';
-import KeySellingPoints from './components/KeySellingPoints';
-import Footer from './components/Footer';
-import AboutPage from './components/AboutPage';
-import ServicesPage from './components/ServicesPage'; 
-import SearchBar from './components/SearchBar';
-import Carousel from './components/Carousel';
-import ProductDetails from './components/ProductDetails';
-import FAQSection from './components/FAQSection';
-import './App.css';
 import PartnerCarousel from './components/PartnerCarousel';
+import AboutPage from './components/AboutPage';
+import ServicesPage from './components/ServicesPage';
+import BlogPage from './components/BlogPage';      
+import FAQSection from './components/FAQSection';
+import Footer from './components/Footer';
+import LoginPage from './components/LoginPage';
+import './App.css';
 
 function App() {
-  // Page switching
+  const [user, setUser] = useState(null);
   const [page, setPage] = useState('home');
-
-  // Product/review/search state shared by home & services
   const [searchQuery, setSearchQuery] = useState('');
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
-  const [reviews, setReviews] = useState({});
 
+  // Persistent reviews
+  const [reviews, setReviews] = useState(() => {
+    const saved = localStorage.getItem("reviews");
+    return saved ? JSON.parse(saved) : {};
+  });
+  useEffect(() => {
+    localStorage.setItem("reviews", JSON.stringify(reviews));
+  }, [reviews]);
+
+  // Fetch products once
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
-      .then(response => response.json())
+      .then(res => res.json())
       .then(data => setProducts(data))
-      .catch(error => console.error("Error fetching products:", error));
+      .catch(err => console.error(err));
   }, []);
 
-  const handleProductSelect = (product) => {
+  const handleProductSelect = product => {
     setSelectedProduct(product);
+    setPage('products');
   };
 
   const addReview = (productId, newReview) => {
-    setReviews(reviews => ({
-      ...reviews,
-      [productId]: reviews[productId] ? [...reviews[productId], newReview] : [newReview]
+    setReviews(prev => ({
+      ...prev,
+      [productId]: prev[productId] ? [...prev[productId], newReview] : [newReview]
     }));
   };
 
+  // If not logged in
+  if (!user) {
+    return (
+      <div className="App">
+        <LoginPage onLogin={email => { setUser(email); setPage('home'); }} />
+      </div>
+    );
+  }
+
   return (
     <div className="App">
-      <Navbar currentPage={page} onChangePage={setPage} />
+      <Navbar
+        currentPage={page}
+        onChangePage={setPage}
+        user={user}
+        setUser={u => { setUser(u); setPage('home'); }}
+      />
+
       {page === 'about' ? (
         <AboutPage />
       ) : page === 'products' ? (
@@ -342,103 +363,41 @@ function App() {
           setSearchQuery={setSearchQuery}
           products={products}
           selectedProduct={selectedProduct}
-          setSelectedProduct={setSelectedProduct}
+          setSelectedProduct={handleProductSelect}
           reviews={reviews}
           addReview={addReview}
         />
+      ) : page === 'blog' ? (
+        <BlogPage />                                
+      ) : page === 'faq' ? (
+        <FAQSection />                              
       ) : (
-        // HOME PAGE (add carousel & searchbar, just like services)
         <>
           <HeroSection />
           <StatsSection />
-          
-          <div style={{ margin: "2em 0" }}>
-            <SearchBar setSearchQuery={setSearchQuery} />
-            {selectedProduct ? (
-              <ProductDetails
-                product={selectedProduct}
-                reviews={reviews[selectedProduct.id] || []}
-                addReview={(newReview) =>
-                  addReview(selectedProduct.id, newReview)
-                }
-                goBack={() => setSelectedProduct(null)}
-              />
-            ) : (
-              <Carousel
-                products={products}
-                searchQuery={searchQuery}
-                onProductSelect={handleProductSelect}
-              />
-            )}
+
+          <div
+            className="viewproduct-banner"
+            style={{
+              backgroundImage: `url("https://i.postimg.cc/LX6TjzSr/Screenshot-2025-07-15-at-6-03-01-PM.png")`
+            }}
+          >
+            <button
+              className="home-products-btn viewproduct-banner__btn"
+              onClick={() => setPage('products')}
+            >
+              View Our Products
+            </button>
           </div>
-          <KeySellingPoints />
+
           <TestimonialCarousel />
-          <PartnerCarousel/>
-          
-          
+          <PartnerCarousel />
         </>
       )}
+
       <Footer onChangePage={setPage} />
     </div>
   );
 }
 
 export default App;
-
-
-
-
-
-
-
-
-// import React, { useState } from 'react';
-// import Navbar from './components/Navbar';
-// import HeroSection from './components/HeroSection';
-// import StatsSection from './components/StatsSection';
-// import ReviewPurpose from './components/ReviewPurpose';
-// import TestimonialCarousel from './components/TestimonialCarousel';
-// import KeySellingPoints from './components/KeySellingPoints';
-// import Footer from './components/Footer';
-// import AboutPage from './components/AboutPage';
-// import ServicesPage from './components/ServicesPage'; // <-- new, holds product search & carousel logic
-// import './App.css';
-
-// function App() {
-//   // Which "page" to show in this SPA
-//   const [page, setPage] = useState('home');
-
-//   return (
-//     <div className="App">
-//       <Navbar currentPage={page} onChangePage={setPage} />
-
-//       {/* ABOUT PAGE */}
-//       {page === 'about' ? (
-//         <>
-//           <HeroSection tagline="Together, We Build the Future" />
-//           <AboutPage />
-//         </>
-//       )
-//       // PRODUCTS / SERVICES PAGE
-//       : page === 'products' ? (
-//         <>
-//           <ServicesPage />
-//         </>
-//       )
-//       // HOME PAGE (default)
-//       : (
-//         <>
-//           <HeroSection />
-//           <StatsSection />
-//           <ReviewPurpose />
-//           <TestimonialCarousel />
-//           <KeySellingPoints />
-//         </>
-//       )}
-
-//       <Footer />
-//     </div>
-//   );
-// }
-
-// export default App;
