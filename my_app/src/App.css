@@ -977,8 +977,6 @@ blockquote{
   margin: 10px auto;
   border: none;
 }
-
-/* Matches your current JSX structure */
 .auto-scoll-container {
   overflow: hidden;
   width: 100%;
@@ -1417,13 +1415,13 @@ button:hover{
   color: #fff;
   border: none;
   border-radius: 20px;
-  padding: 0.4em 1.7em;      /* More compact horizontally */
+  padding: 0.4em 1.7em;      
   font-size: 1.4rem;
   cursor: pointer;
-  display: inline-block;      /* Key: NOT block or flex, just inline-block */
+  display: inline-block;      
   box-shadow: none;
-  min-width: 0;               /* Remove forced min-width */
-  width: auto;                /* Ensure no width is set */
+  min-width: 0;              
+  width: auto;               
   font-weight: normal;
   transition: 0.18s;
 }
@@ -1436,12 +1434,6 @@ button:hover{
 .home-products-btn:active {
   background: #08640d;
 }
-
-
-
-
-
-
 
 .scroll-left {
   display: flex;

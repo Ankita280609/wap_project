@@ -33,8 +33,7 @@ const FAQS = [
   
 ];
 const FAQSection = () => {
-  const [openIdx, setOpenIdx] = useState(null);
-  const handleToggle = idx => setOpenIdx(openIdx === idx ? null : idx);
+  
 
   return (
     <section className="faq-section">

@@ -1,4 +1,4 @@
-// import React from "react"
+// // import React from "react"
 // const HeroSection=()=>{
 //     return(
 //         <section className="hero">
@@ -46,14 +46,14 @@ const HeroSection = () => {
     }
 
     emailjs.send(
-      "service_w1iryvv",
-      "template_e0ho8rk",
+      "service_3v6tgdq",
+      "template_qntxnen",
       {
         from_name: formData.name,
         from_email: formData.email,
         message: formData.message,
       },
-      "SxTY0u6t6-bYTTBdc"
+      "HiqVGjyNc8asDdYkj"
     ).then((response) => {
       console.log("SUCCESS sending to you!", response.status, response.text);
     }, (err) => {
@@ -61,14 +61,14 @@ const HeroSection = () => {
     });
 
     emailjs.send(
-      "service_w1iryvv",
-      "template_52hk4px",
+      "service_3v6tgdq",
+      "template_xh7brd4",
       {
         user_name: formData.name,
         user_email: formData.email,
         message: formData.message, 
       },
-      "SxTY0u6t6-bYTTBdc"
+      "HiqVGjyNc8asDdYkj"
     ).then((response) => {
       console.log("SUCCESS auto-reply!", response.status, response.text);
       alert("Thank you for reaching out!");

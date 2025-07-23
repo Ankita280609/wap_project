@@ -74,5 +74,4 @@ const TestimonialCarousel = () => {
     </section>
   );
 };
-
 export default TestimonialCarousel;

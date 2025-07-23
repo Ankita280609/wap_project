@@ -223,7 +223,7 @@ const Navbar = ({ currentPage, onChangePage, user, setUser }) => {
       <div className="nav-user" style={{ marginLeft: '2em', display: 'flex', alignItems: 'center' }}>
         {user ? (
           <>
-            {/* <span style={{ fontWeight: 'bold' }}>Hello, {user}!</span> */}
+            
             <button className="logout" onClick={() => setUser(null)}>
               Logout
             </button>
