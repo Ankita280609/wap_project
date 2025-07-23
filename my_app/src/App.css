@@ -3,18 +3,25 @@ body, html {
   padding: 0;
   font-family: Arial, sans-serif;
   background-color: rgb(255, 255, 255);
+  max-width: 100%;
+  overflow-x: hidden;
+  box-sizing: border-box;
 }
 
 .App {
   text-align: center;
 }
+
 nav {
   display: flex;
+  flex-wrap: wrap; /* enable wrapping on small screens */
   align-items: center;
   justify-content: space-between;
   background-color: black;
   padding: 10px 25px;
   min-height: 65px;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 nav .logo {
@@ -24,20 +31,27 @@ nav .logo {
   text-decoration: none;
   margin-right: auto;
   cursor: pointer;
+  white-space: nowrap;
 }
 
+/* Center nav items */
 .nav-center {
   flex-grow: 1;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap; /* allow wrapping when screen shrinks */
+  gap: 10px;
 }
 
+/* Nav list styling */
 nav ul {
   list-style-type: none;
   margin: 0;
   padding: 0;
   display: flex;
   gap: 20px;
+  flex-wrap: wrap;
+  justify-content: center;
 }
 
 nav ul li {
@@ -70,15 +84,17 @@ nav ul li a.active {
   color: white;
 }
 
-/* User section (right side of navbar) */
+/* USER SECTION */
 nav .nav-user {
   display: flex;
   align-items: center;
   margin-left: 2em;
-  height: 100%;
+  gap: 8px;
+  flex-wrap: wrap;
+  justify-content: flex-end;
 }
 
-/* Login and Logout buttons - always vertically centered, consistent style */
+/* Login and Logout Buttons */
 nav .login,
 nav .logout {
   background-color: #0a7616;
@@ -89,13 +105,12 @@ nav .logout {
   font-size: 1em;
   font-weight: 600;
   padding: 10px 22px;
-  margin-left: 16px; 
   display: flex;
   align-items: center;
   height: 40px;
-  box-sizing: border-box;
   text-decoration: none;
-  align-self: center;
+  box-sizing: border-box;
+  white-space: nowrap;
 }
 
 nav .login:hover,
@@ -103,11 +118,59 @@ nav .logout:hover {
   background-color: #25ac38;
 }
 
+/* Username text */
 nav .nav-user > span {
   font-weight: bold;
   display: flex;
   align-items: center;
   height: 40px;
+  color: white;
+  white-space: nowrap;
+}
+
+/* ✅ RESPONSIVE FIXES */
+@media screen and (max-width: 768px) {
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px 15px;
+  }
+
+  .nav-center {
+    width: 100%;
+    justify-content: flex-start;
+    margin-top: 10px;
+  }
+
+  nav ul {
+    flex-direction: column;
+    width: 100%;
+    gap: 10px;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  nav .nav-user {
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    margin-top: 10px;
+    margin-left: 0;
+    gap: 6px;
+  }
+
+  nav .login,
+  nav .logout {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .search-bar {
@@ -897,50 +960,65 @@ blockquote{
   font-size: 1rem;
   line-height: 1.6;
 }
+.partner-carousel {
+  padding: 40px 20px;
+  background-color: #fff;
+  text-align: center;
+}
 
-.partner-carousel{
+.heading {
+  margin-bottom: 20px;
+}
 
-  padding:20px;
-  text-align:center;
+.green-line {
+  width: 150px;
+  height: 3px;
+  background-color: green;
+  margin: 10px auto;
+  border: none;
 }
-.heading{
-  margin-bottom:20px;
-}
-.green-line{
-  width:60%;
-  height:2px;
-  background-color:green;
-  margin:10px auto;
 
+/* Matches your current JSX structure */
+.auto-scoll-container {
+  overflow: hidden;
+  width: 100%;
+  position: relative;
+}
 
+.scroll-left {
+  display: flex;
+  gap: 30px;
+  animation: scrollLeft 25s linear infinite;
 }
-.carousel{
-  display:flex;
-  justify-content:center;
-  overflow-x:auto;
-  gap:20px;
-  padding:20px 0
 
+.carousel-item {
+  flex: 0 0 auto;
+  background-color: #f9f9f9;
+  padding: 16px;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.06);
+  transition: transform 0.3s ease;
 }
-.carousel-item{
-  background-color:#f9f9f9;
-  padding:10px;
-  border-radius:8px;
-  box-shadow:0 4px 8px rgba(0, 0, 0, 0.1);
-  width:150px;
-  text-align:center;
-}
-.carousel-item img{
-  width:100px;
-  height:auto;
-  margin-bottom:8px;
 
+.carousel-item:hover {
+  transform: scale(1.05);
 }
-.carousel-item p{
-  font-size: 1 em;
-  font-weight:bold;
-  color:#333
+
+.carousel-item img {
+  width: 100px;
+  height: auto;
+  object-fit: contain;
 }
+
+@keyframes scrollLeft {
+  0% {
+    transform: translateX(0%);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
 .login-page{
   height:100vh;
   display:flex;

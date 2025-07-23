@@ -287,6 +287,8 @@
 // export default App;??
 
 // src/App.js
+// src/App.js
+
 import React, { useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import HeroSection from './components/HeroSection';
@@ -295,10 +297,11 @@ import TestimonialCarousel from './components/TestimonialCarousel';
 import PartnerCarousel from './components/PartnerCarousel';
 import AboutPage from './components/AboutPage';
 import ServicesPage from './components/ServicesPage';
-import BlogPage from './components/BlogPage';      
+import BlogPage from './components/BlogPage';
 import FAQSection from './components/FAQSection';
 import Footer from './components/Footer';
 import LoginPage from './components/LoginPage';
+import SignupPage from './components/SignupPage'; 
 import './App.css';
 
 function App() {
@@ -308,7 +311,6 @@ function App() {
   const [products, setProducts] = useState([]);
   const [selectedProduct, setSelectedProduct] = useState(null);
 
-  // Persistent reviews
   const [reviews, setReviews] = useState(() => {
     const saved = localStorage.getItem("reviews");
     return saved ? JSON.parse(saved) : {};
@@ -317,7 +319,6 @@ function App() {
     localStorage.setItem("reviews", JSON.stringify(reviews));
   }, [reviews]);
 
-  // Fetch products once
   useEffect(() => {
     fetch('https://fakestoreapi.com/products')
       .then(res => res.json())
@@ -337,13 +338,12 @@ function App() {
     }));
   };
 
-  // If not logged in
+  // 👇 Show login or signup before rendering app
   if (!user) {
-    return (
-      <div className="App">
-        <LoginPage onLogin={email => { setUser(email); setPage('home'); }} />
-      </div>
-    );
+    if (page === 'signup') {
+      return <SignupPage onSignup={email => { setUser(email); setPage('home'); }} onChangePage={setPage} />;
+    }
+    return <LoginPage onLogin={email => { setUser(email); setPage('home'); }} onChangePage={setPage} />;
   }
 
   return (
@@ -368,9 +368,9 @@ function App() {
           addReview={addReview}
         />
       ) : page === 'blog' ? (
-        <BlogPage />                                
+        <BlogPage />
       ) : page === 'faq' ? (
-        <FAQSection />                              
+        <FAQSection />
       ) : (
         <>
           <HeroSection />
